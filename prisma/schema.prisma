@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/client"
+  moduleFormat        = "cjs"
+  importFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Board {
+  id    String @id @default(dbgenerated("gen_random_uuid()"))
+  name  String
+  tasks Task[]
+}
+
+model Task {
+  id           String       @id @default(dbgenerated("gen_random_uuid()"))
+  title        String
+  description  String?
+  board        Board        @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId      String
+  taskProgress TaskProgress @default(ToDo)
+  orderInTable Int
+}
+
+enum TaskProgress {
+  ToDo
+  InProgress
+  Done
+}
