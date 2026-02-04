@@ -13,8 +13,9 @@ export const create = async (req: Request, res: Response) => {
     const task = await prisma.task.create({
         data: {
             title: data.title,
-            description: data.description,
+            description: data?.description,
             boardId: data.boardId,
+            taskProgress: data?.taskProgress,
             orderInTable: orderInTable
         }
     })
@@ -74,14 +75,14 @@ export const deleteOne = async (req: Request, res: Response) => {
     }
 
     else if (typeof id === 'string') {
-        const table = await prisma.task.delete({
+        const task = await prisma.task.delete({
             where: {
                 id: id
             }
         })
-        if (table) {
+        if (task) {
             res.status(200).json({
-                deletedTable: table,
+                deletedTask: task,
                 message: "Task deleted successfully"
             })
         }
