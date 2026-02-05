@@ -27,11 +27,11 @@ export type AggregateTask = {
 }
 
 export type TaskAvgAggregateOutputType = {
-  orderInTable: number | null
+  orderInTable: runtime.Decimal | null
 }
 
 export type TaskSumAggregateOutputType = {
-  orderInTable: number | null
+  orderInTable: runtime.Decimal | null
 }
 
 export type TaskMinAggregateOutputType = {
@@ -40,7 +40,7 @@ export type TaskMinAggregateOutputType = {
   description: string | null
   boardId: string | null
   taskProgress: $Enums.TaskProgress | null
-  orderInTable: number | null
+  orderInTable: runtime.Decimal | null
 }
 
 export type TaskMaxAggregateOutputType = {
@@ -49,7 +49,7 @@ export type TaskMaxAggregateOutputType = {
   description: string | null
   boardId: string | null
   taskProgress: $Enums.TaskProgress | null
-  orderInTable: number | null
+  orderInTable: runtime.Decimal | null
 }
 
 export type TaskCountAggregateOutputType = {
@@ -191,7 +191,7 @@ export type TaskGroupByOutputType = {
   description: string | null
   boardId: string
   taskProgress: $Enums.TaskProgress
-  orderInTable: number
+  orderInTable: runtime.Decimal
   _count: TaskCountAggregateOutputType | null
   _avg: TaskAvgAggregateOutputType | null
   _sum: TaskSumAggregateOutputType | null
@@ -223,7 +223,7 @@ export type TaskWhereInput = {
   description?: Prisma.StringNullableFilter<"Task"> | string | null
   boardId?: Prisma.StringFilter<"Task"> | string
   taskProgress?: Prisma.EnumTaskProgressFilter<"Task"> | $Enums.TaskProgress
-  orderInTable?: Prisma.IntFilter<"Task"> | number
+  orderInTable?: Prisma.DecimalFilter<"Task"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   board?: Prisma.XOR<Prisma.BoardScalarRelationFilter, Prisma.BoardWhereInput>
 }
 
@@ -246,7 +246,7 @@ export type TaskWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Task"> | string | null
   boardId?: Prisma.StringFilter<"Task"> | string
   taskProgress?: Prisma.EnumTaskProgressFilter<"Task"> | $Enums.TaskProgress
-  orderInTable?: Prisma.IntFilter<"Task"> | number
+  orderInTable?: Prisma.DecimalFilter<"Task"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   board?: Prisma.XOR<Prisma.BoardScalarRelationFilter, Prisma.BoardWhereInput>
 }, "id">
 
@@ -273,7 +273,7 @@ export type TaskScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"Task"> | string | null
   boardId?: Prisma.StringWithAggregatesFilter<"Task"> | string
   taskProgress?: Prisma.EnumTaskProgressWithAggregatesFilter<"Task"> | $Enums.TaskProgress
-  orderInTable?: Prisma.IntWithAggregatesFilter<"Task"> | number
+  orderInTable?: Prisma.DecimalWithAggregatesFilter<"Task"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskCreateInput = {
@@ -281,7 +281,7 @@ export type TaskCreateInput = {
   title: string
   description?: string | null
   taskProgress?: $Enums.TaskProgress
-  orderInTable: number
+  orderInTable: runtime.Decimal | runtime.DecimalJsLike | number | string
   board: Prisma.BoardCreateNestedOneWithoutTasksInput
 }
 
@@ -291,7 +291,7 @@ export type TaskUncheckedCreateInput = {
   description?: string | null
   boardId: string
   taskProgress?: $Enums.TaskProgress
-  orderInTable: number
+  orderInTable: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskUpdateInput = {
@@ -299,7 +299,7 @@ export type TaskUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taskProgress?: Prisma.EnumTaskProgressFieldUpdateOperationsInput | $Enums.TaskProgress
-  orderInTable?: Prisma.IntFieldUpdateOperationsInput | number
+  orderInTable?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   board?: Prisma.BoardUpdateOneRequiredWithoutTasksNestedInput
 }
 
@@ -309,7 +309,7 @@ export type TaskUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   boardId?: Prisma.StringFieldUpdateOperationsInput | string
   taskProgress?: Prisma.EnumTaskProgressFieldUpdateOperationsInput | $Enums.TaskProgress
-  orderInTable?: Prisma.IntFieldUpdateOperationsInput | number
+  orderInTable?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskCreateManyInput = {
@@ -318,7 +318,7 @@ export type TaskCreateManyInput = {
   description?: string | null
   boardId: string
   taskProgress?: $Enums.TaskProgress
-  orderInTable: number
+  orderInTable: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskUpdateManyMutationInput = {
@@ -326,7 +326,7 @@ export type TaskUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taskProgress?: Prisma.EnumTaskProgressFieldUpdateOperationsInput | $Enums.TaskProgress
-  orderInTable?: Prisma.IntFieldUpdateOperationsInput | number
+  orderInTable?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskUncheckedUpdateManyInput = {
@@ -335,7 +335,7 @@ export type TaskUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   boardId?: Prisma.StringFieldUpdateOperationsInput | string
   taskProgress?: Prisma.EnumTaskProgressFieldUpdateOperationsInput | $Enums.TaskProgress
-  orderInTable?: Prisma.IntFieldUpdateOperationsInput | number
+  orderInTable?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskListRelationFilter = {
@@ -433,12 +433,12 @@ export type EnumTaskProgressFieldUpdateOperationsInput = {
   set?: $Enums.TaskProgress
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type DecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskCreateWithoutBoardInput = {
@@ -446,7 +446,7 @@ export type TaskCreateWithoutBoardInput = {
   title: string
   description?: string | null
   taskProgress?: $Enums.TaskProgress
-  orderInTable: number
+  orderInTable: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskUncheckedCreateWithoutBoardInput = {
@@ -454,7 +454,7 @@ export type TaskUncheckedCreateWithoutBoardInput = {
   title: string
   description?: string | null
   taskProgress?: $Enums.TaskProgress
-  orderInTable: number
+  orderInTable: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskCreateOrConnectWithoutBoardInput = {
@@ -492,7 +492,7 @@ export type TaskScalarWhereInput = {
   description?: Prisma.StringNullableFilter<"Task"> | string | null
   boardId?: Prisma.StringFilter<"Task"> | string
   taskProgress?: Prisma.EnumTaskProgressFilter<"Task"> | $Enums.TaskProgress
-  orderInTable?: Prisma.IntFilter<"Task"> | number
+  orderInTable?: Prisma.DecimalFilter<"Task"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskCreateManyBoardInput = {
@@ -500,7 +500,7 @@ export type TaskCreateManyBoardInput = {
   title: string
   description?: string | null
   taskProgress?: $Enums.TaskProgress
-  orderInTable: number
+  orderInTable: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskUpdateWithoutBoardInput = {
@@ -508,7 +508,7 @@ export type TaskUpdateWithoutBoardInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taskProgress?: Prisma.EnumTaskProgressFieldUpdateOperationsInput | $Enums.TaskProgress
-  orderInTable?: Prisma.IntFieldUpdateOperationsInput | number
+  orderInTable?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskUncheckedUpdateWithoutBoardInput = {
@@ -516,7 +516,7 @@ export type TaskUncheckedUpdateWithoutBoardInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taskProgress?: Prisma.EnumTaskProgressFieldUpdateOperationsInput | $Enums.TaskProgress
-  orderInTable?: Prisma.IntFieldUpdateOperationsInput | number
+  orderInTable?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type TaskUncheckedUpdateManyWithoutBoardInput = {
@@ -524,7 +524,7 @@ export type TaskUncheckedUpdateManyWithoutBoardInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   taskProgress?: Prisma.EnumTaskProgressFieldUpdateOperationsInput | $Enums.TaskProgress
-  orderInTable?: Prisma.IntFieldUpdateOperationsInput | number
+  orderInTable?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 
@@ -590,7 +590,7 @@ export type $TaskPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     description: string | null
     boardId: string
     taskProgress: $Enums.TaskProgress
-    orderInTable: number
+    orderInTable: runtime.Decimal
   }, ExtArgs["result"]["task"]>
   composites: {}
 }
@@ -1020,7 +1020,7 @@ export interface TaskFieldRefs {
   readonly description: Prisma.FieldRef<"Task", 'String'>
   readonly boardId: Prisma.FieldRef<"Task", 'String'>
   readonly taskProgress: Prisma.FieldRef<"Task", 'TaskProgress'>
-  readonly orderInTable: Prisma.FieldRef<"Task", 'Int'>
+  readonly orderInTable: Prisma.FieldRef<"Task", 'Decimal'>
 }
     
 

@@ -28,7 +28,7 @@ model Task {
   board        Board        @relation(fields: [boardId], references: [id], onDelete: Cascade)
   boardId      String
   taskProgress TaskProgress @default(ToDo)
-  orderInTable Int
+  orderInTable Decimal
 }
 
 enum TaskProgress {

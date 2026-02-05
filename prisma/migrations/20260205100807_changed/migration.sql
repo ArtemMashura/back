@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Task" ALTER COLUMN "orderInTable" SET DATA TYPE DECIMAL(65,30);
