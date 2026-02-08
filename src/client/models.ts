@@ -8,6 +8,6 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Board.ts'
-export type * from './models/Task.ts'
-export type * from './commonInputTypes.ts'
+export type * from './models/Board.js'
+export type * from './models/Task.js'
+export type * from './commonInputTypes.js'

@@ -12,7 +12,7 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "./prismaNamespace.ts"
+import type * as Prisma from "./prismaNamespace.js"
 
 
 const config: runtime.GetPrismaClientConfig = {
@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.3.0",
   "engineVersion": "9d6ad21cbbceab97458517b147a6a09ff43aa735",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider            = \"prisma-client\"\n  output              = \"../src/client\"\n  moduleFormat        = \"cjs\"\n  importFileExtension = \"ts\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Board {\n  id    String @id @default(dbgenerated(\"gen_random_uuid()\"))\n  name  String\n  tasks Task[]\n}\n\nmodel Task {\n  id           String       @id @default(dbgenerated(\"gen_random_uuid()\"))\n  title        String\n  description  String?\n  board        Board        @relation(fields: [boardId], references: [id], onDelete: Cascade)\n  boardId      String\n  taskProgress TaskProgress @default(ToDo)\n  orderInTable Decimal\n}\n\nenum TaskProgress {\n  ToDo\n  InProgress\n  Done\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider            = \"prisma-client\"\n  output              = \"../src/client\"\n  moduleFormat        = \"cjs\"\n  importFileExtension = \"js\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Board {\n  id    String @id @default(dbgenerated(\"gen_random_uuid()\"))\n  name  String\n  tasks Task[]\n}\n\nmodel Task {\n  id           String       @id @default(dbgenerated(\"gen_random_uuid()\"))\n  title        String\n  description  String?\n  board        Board        @relation(fields: [boardId], references: [id], onDelete: Cascade)\n  boardId      String\n  taskProgress TaskProgress @default(ToDo)\n  orderInTable Decimal\n}\n\nenum TaskProgress {\n  ToDo\n  InProgress\n  Done\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
