@@ -357,7 +357,6 @@
     "toidentifier": "^1.0.1",
     "touch": "^3.1.1",
     "ts-api-utils": "^2.4.0",
-    "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
     "type-check": "^0.4.0",
     "type-detect": "^4.0.8",
@@ -395,13 +394,18 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
     "@types/node": "^25.2.1",
     "@types/pg": "^8.16.0",
-    "jest": "^30.2.0"
+    "jest": "^30.2.0",
+    "supertest": "^7.2.2",
+    "ts-jest": "^29.4.6"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon"
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "nodemon",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
